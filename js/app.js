@@ -1,4 +1,4 @@
-
+const main = document.getElementById('main');
 // function fetchData(url) {
 //     return fetch(url)
 //         .then(result => result.json())
@@ -10,11 +10,20 @@
 //     if (res === 'ok')
 // }
 
+function createEmployee(data) {
 
-// function createEmployee() {
-//     const employeeList = fetchData('https://randomuser.me/api/?results=12');
+    console.log(data[0].picture.large);
+    for (let i = 0; i < 13; i++) {
+        const section = document.createElement('section');
+        const html = `
+            <img src="${data[i].picture.large}">
+        `;
+        section.innerHTML = html;
+        section.className = 'card';
+        main.appendChild(section);
+    }
 
-// }
+}
 
 
 // fetchData('https://randomuser.me/api/?results=12')
@@ -22,7 +31,8 @@
 Promise.all([
     fetch('https://randomuser.me/api/?results=12')
         .then(res => res.json())
-        .then(res => document.getElementByTagName('main').innerHTML = res)
+        // .then(res => console.log(res.results))
+        .then(res => createEmployee(res.results))
 ])
 
 
