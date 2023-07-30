@@ -4,6 +4,20 @@
 
 .card {
     width: 300px;
-    border: 1px solid darkgrey;
+    height: 120px;
+    border: 2px solid lightgrey;
     border-radius: 7px;
+}
+
+.card img {
+    float: left;
+    border-radius: 50%;
+    width: 81px;
+    margin: 18px 12px
+}
+
+.card h3 {}
+
+.card p {
+    font-size: .9em;
 }
