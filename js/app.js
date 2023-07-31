@@ -32,9 +32,6 @@ function createEmployee(data) {
 
 }
 
-
-// fetchData('https://randomuser.me/api/?results=12')
-//     .then(data => console.log(data))
 Promise.all([
     fetch('https://randomuser.me/api/?results=12')
         .then(res => res.json())

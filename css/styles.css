@@ -1,5 +1,22 @@
 * {
     box-sizing: border-box;
+    /* border: 1px solid red; */
+}
+
+#page_heading {
+    font-size: 1em;
+    text-align: center;
+    margin: auto;
+    width: 100%;
+    border: 1px solid black;
+}
+
+main {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
 }
 
 .card {
@@ -12,12 +29,38 @@
 .card img {
     float: left;
     border-radius: 50%;
-    width: 81px;
-    margin: 18px 12px
+    width: 80px;
+    margin: 18px 15px;
 }
 
-.card h3 {}
+.card h3 {
+    font-size: 1.1em;
+    margin: 33px 0 0;
+    line-height: 1;
+}
 
 .card p {
-    font-size: .9em;
+    font-size: .7em;
+    line-height: .9;
+    margin: 7px 0;
+}
+
+@media screen and (min-width: 653px) {
+    #page_heading {
+        text-align: left;
+        width: 618px;
+    }
+}
+
+@media screen and (min-width: 973px) {
+    #page_heading {
+        width: 938px;
+    }
+}
+
+@media screen and (min-width: 1293px) {
+    #page_heading {
+        text-align: left;
+        width: 1258px;
+    }
 }
