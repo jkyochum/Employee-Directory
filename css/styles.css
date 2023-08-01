@@ -6,7 +6,7 @@
 #page_heading {
     font-size: 1em;
     text-align: center;
-    margin: 18px auto;
+    margin: 28px auto 18px;
     /* margin-bottom: 18px; */
     width: 100%;
 }
@@ -24,8 +24,16 @@ main {
 .card {
     width: 300px;
     height: 120px;
-    border: 2px solid lightgrey;
+    border: 2px solid rgb(224, 224, 224);
     border-radius: 7px;
+    transition: all .15s ease-in-out;
+}
+
+.card:hover {
+    border-color: darkgrey;
+    box-shadow: 0 3px 8px darkgrey;
+    transform: scale(1.05);
+    cursor: pointer;
 }
 
 .card img {
