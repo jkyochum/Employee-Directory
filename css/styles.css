@@ -6,9 +6,9 @@
 #page_heading {
     font-size: 1em;
     text-align: center;
-    margin: auto;
+    margin: 18px auto;
+    /* margin-bottom: 18px; */
     width: 100%;
-    border: 1px solid black;
 }
 
 main {
@@ -17,6 +17,8 @@ main {
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
+    max-width: 1000px;
+    margin: auto;
 }
 
 .card {
@@ -55,12 +57,5 @@ main {
 @media screen and (min-width: 973px) {
     #page_heading {
         width: 938px;
-    }
-}
-
-@media screen and (min-width: 1293px) {
-    #page_heading {
-        text-align: left;
-        width: 1258px;
     }
 }
