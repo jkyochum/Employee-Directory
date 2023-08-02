@@ -29,7 +29,7 @@ main {
     width: 300px;
     height: 120px;
     border: 2px solid rgb(224, 224, 224);
-    border-radius: 7px;
+    border-radius: 6px;
     transition: all .15s ease-in-out;
 }
 
@@ -53,6 +53,11 @@ main {
     line-height: 1;
 }
 
+.card p,
+#modal-card p {
+    color: rgb(141, 141, 141);
+}
+
 .card p {
     font-size: .7em;
     line-height: .9;
@@ -60,10 +65,57 @@ main {
 }
 
 #modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, .5);
+    height: 100%;
+    width: 100%;
     position: absolute;
-    background-color: rgba(0, 0, 0, .3);
-    height: 100vh;
-    /* width: 100%; */
+    top: 0;
+    left: 0;
+    opacity: 1;
+    /* pointer-events: none; */
+}
+
+#modal-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    width: 300px;
+    border-radius: 6px;
+    position: absolute;
+    top: 15%;
+}
+
+#modal-card #exit {
+    align-self: flex-end;
+    padding: 5px 25px;
+    cursor: pointer;
+}
+
+#modal-card img {
+    border-radius: 50%;
+    width: 100px;
+    margin: 2px auto 12px;
+}
+
+#modal-card h3 {
+    font-size: .9em;
+}
+
+#modal-card p {
+    font-size: .7em;
+    line-height: .9;
+    margin: 7px 0;
+}
+
+#modal-card #border {
+    width: 80%;
+    height: 1px;
+    background-color: rgb(209, 209, 209);
+    margin: 15px auto;
 }
 
 @media screen and (min-width: 637px) {
