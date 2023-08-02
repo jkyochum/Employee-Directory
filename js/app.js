@@ -1,6 +1,9 @@
+const body = document.querySelector('body');
 const main = document.getElementById('main');
 const cardHolder = document.getElementById('card-holder');
+const modalOverlay = document.getElementById('modal');
 const modalCard = document.getElementById('modal-card');
+const btnExitModal = document.querySelector('#exit');
 // function fetchData(url) {
 //     return fetch(url)
 //         .then(result => result.json())
@@ -75,10 +78,25 @@ Promise.all([
         .catch(err => `There was an error loading data: ${err}`)
 ])
 
-document.addEventListener('click', e => {
+
+//EVENT LISTENERS
+modalCard.addEventListener('click', e => {
+    console.log(e);
+    if (e.target.id === 'exit') {
+        modalOverlay.style.opacity = '0';
+        modalOverlay.style.pointerEvents = 'none';
+        main.style.pointerEvents = 'auto';
+        body.style.overflow = 'auto';
+    }
+});
+
+main.addEventListener('click', e => {
     if (e.target.parentElement.className === 'card' || e.target.className === 'card') {
         console.log(e);
-
+        modalOverlay.style.opacity = '1';
+        modalOverlay.style.pointerEvents = 'auto';
+        main.style.pointerEvents = 'none';
+        body.style.overflow = 'hidden';
     }
 });
 
