@@ -1,24 +1,28 @@
 * {
     box-sizing: border-box;
+    padding: 0;
+    margin: 0;
     /* border: 1px solid red; */
+}
+
+main {
+    max-width: 1000px;
+    margin: auto;
 }
 
 #page_heading {
     font-size: 1em;
     text-align: center;
-    margin: 28px auto 18px;
-    /* margin-bottom: 18px; */
+    padding: 28px 0 18px;
+    margin: auto;
     width: 100%;
 }
 
-main {
+#card-holder {
     display: flex;
-    flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
-    max-width: 1000px;
-    margin: auto;
 }
 
 .card {
@@ -55,14 +59,21 @@ main {
     margin: 7px 0;
 }
 
-@media screen and (min-width: 653px) {
+#modal {
+    position: absolute;
+    background-color: rgba(0, 0, 0, .3);
+    height: 100vh;
+    /* width: 100%; */
+}
+
+@media screen and (min-width: 637px) {
     #page_heading {
         text-align: left;
         width: 618px;
     }
 }
 
-@media screen and (min-width: 973px) {
+@media screen and (min-width: 957px) {
     #page_heading {
         width: 938px;
     }

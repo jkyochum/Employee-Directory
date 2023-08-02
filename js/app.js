@@ -1,4 +1,5 @@
 const main = document.getElementById('main');
+const cardHolder = document.getElementById('card-holder');
 // function fetchData(url) {
 //     return fetch(url)
 //         .then(result => result.json())
@@ -27,7 +28,7 @@ function createEmployee(data) {
         `;
         section.innerHTML = html;
         section.className = 'card';
-        main.appendChild(section);
+        cardHolder.appendChild(section);
     }
 
 }
