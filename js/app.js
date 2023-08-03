@@ -41,7 +41,7 @@ function formatDate(date) {
     console.log(date);
     const day = date.getDate();
     const month = date.getMonth();
-    const year = date.getFullYear();
+    const year = date.getYear();
     const dateString = `${month + 1}/${day}/${year}`;
     return dateString;
 }
@@ -58,7 +58,7 @@ function createEmployeeModal(data) {
     const city = data[0].location.city;
     const state = data[0].location.state;
     const postCode = data[0].location.postcode;
-    const birthDate = formatDate(new Date(data[0].dob.date));
+    const birthDate = new Date(data[0].dob.date).toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: '2-digit' });
     const html = `
         <div id="exit">x</div>
         <img src="${data[0].picture.large}">
