@@ -15,6 +15,7 @@ const btnExitModal = document.querySelector('#exit');
 //     if (res === 'ok')
 // }
 
+
 function createEmployeeCard(data) {
 
     // console.log(data[0]);
@@ -36,6 +37,15 @@ function createEmployeeCard(data) {
     }
 }
 
+function formatDate(date) {
+    console.log(date);
+    const day = date.getDate();
+    const month = date.getMonth();
+    const year = date.getFullYear();
+    const dateString = `${month + 1}/${day}/${year}`;
+    return dateString;
+}
+
 function createEmployeeModal(data) {
     console.log(data[0]);
 
@@ -48,7 +58,7 @@ function createEmployeeModal(data) {
     const city = data[0].location.city;
     const state = data[0].location.state;
     const postCode = data[0].location.postcode;
-    const birthDate = data[0].dob.date;
+    const birthDate = formatDate(new Date(data[0].dob.date));
     const html = `
         <div id="exit">x</div>
         <img src="${data[0].picture.large}">
