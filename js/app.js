@@ -4,12 +4,14 @@ const cardHolder = document.getElementById('card-holder');
 const modalOverlay = document.getElementById('modal');
 const modalCard = document.getElementById('modal-card');
 const btnExitModal = document.querySelector('#exit');
-// function fetchData(url) {
-//     return fetch(url)
-//         .then(result => result.json())
-//         .catch(err => console.log(`There was a problem loading the data: ${err}`))
 
-// }
+
+function fetchData(url) {
+    return fetch(url)
+        .then(result => result.json())
+        .catch(err => console.log(`There was a problem loading the data: ${err}`))
+
+}
 
 // function checkStatus(res) {
 //     if (res === 'ok')
@@ -34,16 +36,13 @@ function createEmployeeCard(data) {
         section.innerHTML = html;
         section.className = 'card';
         cardHolder.appendChild(section);
-    }
-}
 
-function formatDate(date) {
-    console.log(date);
-    const day = date.getDate();
-    const month = date.getMonth();
-    const year = date.getYear();
-    const dateString = `${month + 1}/${day}/${year}`;
-    return dateString;
+
+
+
+    }
+    createEmployeeModal(data);
+
 }
 
 function createEmployeeModal(data) {
@@ -74,17 +73,10 @@ function createEmployeeModal(data) {
 }
 
 
-//image, first and last name, email, cell number, Detailed Address:
-//street name and number, city, state, postcode, birthdate
-Promise.all([
-    fetch('https://randomuser.me/api/?results=12')
-        .then(res => res.json())
-        .then(res => {
-            createEmployeeModal(res.results);
 
-            createEmployeeCard(res.results);
-        })
-        // .then(r => console.log(r.results))
+Promise.all([
+    fetchData('https://randomuser.me/api/?results=12')
+        .then(res => createEmployeeCard(res.results))
         .catch(err => `There was an error loading data: ${err}`)
 ])
 
@@ -107,6 +99,19 @@ main.addEventListener('click', e => {
         modalOverlay.style.pointerEvents = 'auto';
         main.style.pointerEvents = 'none';
         body.style.overflow = 'hidden';
+        let imgSrc = '';
+        console.log(e.target);
+        if (e.target.parentElement.className === 'card') {
+            imgSrc = e.target.parentElement.children[0].currentSrc;
+        }
+        else {
+            imgSrc = e.target.children[0].currentSrc;
+        }
+        imgSrc = imgSrc.substring(36, imgSrc.length - 4);
+        console.log(imgSrc);
+        // fetchData(`https://randomuser.me/api/?${imgSrc}`)
+        //     .then(res => console.log(res.results[0]))
+        // .then(res => createEmployeeModal(res.results[0]))
     }
 });
 
