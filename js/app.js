@@ -7,27 +7,12 @@ const btnExitModal = document.querySelector('#exit');
 const employeeArray = [];
 
 
-function fetchData(url) {
-    return fetch(url)
-        .then(result => result.json())
-        .catch(err => console.log(`There was a problem loading the data: ${err}`))
-
-}
-
-// function checkStatus(res) {
-//     if (res === 'ok')
-// }
-
-
-
-
-
+//Using fetch API to request data from randomuser.me
 fetch('https://randomuser.me/api/?results=12')
     .then(res => res.json())
     .then(data => {
         console.log(data);
         createEmployeeCard(data.results);
-        createEmployeeModal(data.results);
     })
     .catch(err => console.log(`There was an error loading data: ${err}`))
 
