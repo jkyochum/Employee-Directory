@@ -66,6 +66,7 @@ function createEmployeeModal(data) {
     modalCard.innerHTML = html;
 }
 
+
 //HELPER FUNCTIONS
 function abbreviateState(state) {
     var states = [

@@ -55,7 +55,7 @@ main {
 .card h3 {
     font-size: 1.1em;
     margin: 33px 0 0;
-    line-height: 1;
+    line-height: 1.2;
 }
 
 .card p,
@@ -73,7 +73,7 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(0, 0, 0, .5);
+    background-color: rgba(0, 0, 0, .7);
     height: 100%;
     width: 100%;
     position: fixed;
@@ -81,6 +81,52 @@ main {
     left: 0;
     opacity: 0;
     pointer-events: none;
+}
+
+#modal .arrow {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+    top: 35%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
+#modal #left-arrow {
+    left: 2%;
+}
+
+#modal #right-arrow {
+    right: 2%;
+}
+
+#modal .arrow>span {
+    display: inline-block;
+    position: relative;
+    top: 22%;
+    left: 13%;
+    width: 30px;
+    height: 5px;
+    border-radius: 25%;
+    background-color: rgba(235, 235, 235);
+}
+
+#modal #left-arrow span:nth-child(1) {
+    transform: rotate(-35deg);
+}
+
+#modal #left-arrow span:nth-child(2) {
+    transform: rotate(35deg);
+}
+
+#modal #right-arrow span:nth-child(1) {
+    transform: rotate(35deg);
+}
+
+#modal #right-arrow span:nth-child(2) {
+    transform: rotate(-35deg);
 }
 
 #modal-card {
@@ -112,12 +158,13 @@ main {
 
 #modal-card h3 {
     font-size: .9em;
+    margin-bottom: 2px;
 }
 
 #modal-card p {
     font-size: .7em;
     line-height: .9;
-    margin: 7px 0;
+    margin: 7.5px 0;
     text-align: center;
 }
 
@@ -128,15 +175,15 @@ main {
     margin: 15px auto;
 }
 
-@media screen and (min-width: 637px) {
+@media screen and (min-width: 673px) {
     #page_heading {
         text-align: left;
-        width: 618px;
+        width: 655px;
     }
 }
 
-@media screen and (min-width: 957px) {
+@media screen and (min-width: 1011px) {
     #page_heading {
-        width: 938px;
+        width: 992px;
     }
 }
