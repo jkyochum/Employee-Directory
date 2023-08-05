@@ -1,10 +1,11 @@
 const body = document.querySelector('body');
 const main = document.getElementById('main');
 const cardHolder = document.getElementById('card-holder');
-const modalOverlay = document.getElementById('modal');
+const modal = document.getElementById('modal');
 const modalCard = document.getElementById('modal-card');
 const btnExitModal = document.querySelector('#exit');
 const employeeArray = [];
+let currentIndex;
 
 
 //Using fetch API to request data from randomuser.me
@@ -132,20 +133,40 @@ function abbreviateState(state) {
 
 
 //EVENT LISTENERS
-modalCard.addEventListener('click', e => {
-    console.log(e);
+modal.addEventListener('click', e => {
+    // console.log(e);
     if (e.target.id === 'exit') {
-        modalOverlay.style.opacity = '0';
-        modalOverlay.style.pointerEvents = 'none';
+        modal.style.opacity = '0';
+        modal.style.pointerEvents = 'none';
         main.style.pointerEvents = 'auto';
         body.style.overflow = 'auto';
+    }
+    if (e.target.id === 'left-arrow' || e.target.parentElement.id === 'left-arrow') {
+        if (currentIndex === (employeeArray.length - employeeArray.length)) {
+            createEmployeeModal(employeeArray[employeeArray.length - 1]);
+            currentIndex = employeeArray.length - 1;
+        }
+        else {
+            createEmployeeModal(employeeArray[currentIndex - 1]);
+        }
+        currentIndex -= 1;
+    }
+    if (e.target.id === 'right-arrow' || e.target.parentElement.id === 'right-arrow') {
+        if (currentIndex === employeeArray.length - 1) {
+            createEmployeeModal(employeeArray[employeeArray.length - employeeArray.length]);
+            currentIndex = employeeArray.length - employeeArray.length;
+        }
+        else {
+            createEmployeeModal(employeeArray[currentIndex + 1]);
+        }
+        currentIndex += 1;
     }
 });
 
 main.addEventListener('click', e => {
     if (e.target.parentElement.className === 'card' || e.target.className === 'card') {
-        modalOverlay.style.opacity = '1';
-        modalOverlay.style.pointerEvents = 'auto';
+        modal.style.opacity = '1';
+        modal.style.pointerEvents = 'auto';
         main.style.pointerEvents = 'none';
         body.style.overflow = 'hidden';
         console.log(e);
@@ -156,7 +177,7 @@ main.addEventListener('click', e => {
         else {
             id = parseInt(e.target.id);
         }
-
+        currentIndex = id;
         console.log(id);
         createEmployeeModal(employeeArray[id]);
     }
