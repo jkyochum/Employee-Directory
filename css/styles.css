@@ -8,6 +8,7 @@
 
 body {
     overflow: auto;
+    background-color: rgb(255, 251, 246);
 }
 
 main {
@@ -15,12 +16,26 @@ main {
     margin: auto;
 }
 
+#header {
+    display: flex;
+    flex-direction: column;
+}
+
 #page_heading {
     font-size: 1em;
     text-align: center;
     padding: 28px 0 18px;
-    margin: auto;
     width: 100%;
+}
+
+#searchbox {
+    width: 318px;
+    height: 45px;
+    margin: 0 auto 20px;
+    padding: 10px;
+    border: 2px solid rgb(114, 114, 114);
+    border-radius: 3px;
+    font-size: 1em;
 }
 
 #card-holder {
@@ -33,6 +48,7 @@ main {
 .card {
     width: 318px;
     height: 120px;
+    background-color: rgb(255 255 255);
     border: 2px solid rgb(224, 224, 224);
     border-radius: 6px;
     transition: all .15s ease-in-out;
@@ -176,9 +192,17 @@ main {
 }
 
 @media screen and (min-width: 673px) {
+    #header {
+        flex-direction: row;
+    }
+
     #page_heading {
         text-align: left;
         width: 655px;
+    }
+
+    #searchbox {
+        width: 200px;
     }
 }
 
