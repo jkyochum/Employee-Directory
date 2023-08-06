@@ -133,6 +133,8 @@ function abbreviateState(state) {
 
 
 //EVENT LISTENERS
+
+
 modal.addEventListener('click', e => {
     // console.log(e);
     if (e.target.id === 'exit') {
@@ -148,8 +150,8 @@ modal.addEventListener('click', e => {
         }
         else {
             createEmployeeModal(employeeArray[currentIndex - 1]);
+            currentIndex -= 1;
         }
-        currentIndex -= 1;
     }
     if (e.target.id === 'right-arrow' || e.target.parentElement.id === 'right-arrow') {
         if (currentIndex === employeeArray.length - 1) {
@@ -158,8 +160,8 @@ modal.addEventListener('click', e => {
         }
         else {
             createEmployeeModal(employeeArray[currentIndex + 1]);
+            currentIndex += 1;
         }
-        currentIndex += 1;
     }
 });
 
@@ -168,7 +170,7 @@ main.addEventListener('click', e => {
         modal.style.opacity = '1';
         modal.style.pointerEvents = 'auto';
         main.style.pointerEvents = 'none';
-        body.style.overflow = 'hidden';
+        // body.style.overflow = 'hidden';
         console.log(e);
         let id = '';
         if (e.target.parentElement.className === 'card') {
