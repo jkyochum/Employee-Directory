@@ -1,10 +1,13 @@
 const body = document.querySelector('body');
 const main = document.getElementById('main');
+const searchbox = document.getElementById('searchbox');
+const searchWrapper = document.getElementById('search-wrapper');
 const cardHolder = document.getElementById('card-holder');
 const modal = document.getElementById('modal');
 const modalCard = document.getElementById('modal-card');
 const btnExitModal = document.querySelector('#exit');
 const employeeArray = [];
+const filteredEmployeeArray = [];
 let currentIndex;
 
 
@@ -131,9 +134,30 @@ function abbreviateState(state) {
     return 'Unavailable';
 }
 
-
 //EVENT LISTENERS
+searchbox.addEventListener('keyup', e => {
+    console.log(e);
+    const searchText = searchbox.value;
+    const cardList = cardHolder.children;
+    // const nameList = document.querySelectorAll('.card h3');
+    // for (let i = 0; i < cardList.length; i++) {
+    //     if (cardList[i].textContent.includes(searchText)) {
+    //         console.log(cardList[i]);
+    //         cardList[i].setAttribute('id', i);
+    //     }
+    // }
+    const newArray = employeeArray.filter(employee => {
+        const name = `${employee.name.first.toLowerCase()} ${employee.name.last.toLowerCase()}`;
+        return name.includes(searchText);
+    });
+    console.log(newArray);
+    for (let i = 0; i < cardList.length; i++) {
+        cardList[i].style.display = 'none';
 
+    }
+
+    // createEmployeeCard(newArray);
+});
 
 modal.addEventListener('click', e => {
     // console.log(e);
@@ -142,6 +166,7 @@ modal.addEventListener('click', e => {
         modal.style.pointerEvents = 'none';
         main.style.pointerEvents = 'auto';
         body.style.overflow = 'auto';
+        searchWrapper.style.zIndex = '5';
     }
     if (e.target.id === 'left-arrow' || e.target.parentElement.id === 'left-arrow') {
         if (currentIndex === (employeeArray.length - employeeArray.length)) {
@@ -170,8 +195,8 @@ main.addEventListener('click', e => {
         modal.style.opacity = '1';
         modal.style.pointerEvents = 'auto';
         main.style.pointerEvents = 'none';
-        // body.style.overflow = 'hidden';
-        console.log(e);
+        body.style.overflow = 'hidden';
+        searchWrapper.style.zIndex = '0';
         let id = '';
         if (e.target.parentElement.className === 'card') {
             id = parseInt(e.target.parentElement.id);
@@ -180,7 +205,6 @@ main.addEventListener('click', e => {
             id = parseInt(e.target.id);
         }
         currentIndex = id;
-        console.log(id);
         createEmployeeModal(employeeArray[id]);
     }
 });
