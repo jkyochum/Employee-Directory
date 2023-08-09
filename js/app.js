@@ -3,11 +3,12 @@ const main = document.getElementById('main');
 const searchbox = document.getElementById('searchbox');
 const searchWrapper = document.getElementById('search-wrapper');
 const cardHolder = document.getElementById('card-holder');
+const cardList = cardHolder.children;
 const modal = document.getElementById('modal');
 const modalCard = document.getElementById('modal-card');
 const btnExitModal = document.querySelector('#exit');
 const employeeArray = [];
-const filteredEmployeeArray = [];
+let filteredEmployeeArray = [];
 let currentIndex;
 
 
@@ -24,7 +25,7 @@ fetch('https://randomuser.me/api/?nat=us&results=12')
 //CREATOR FUNCTIONS
 function createEmployeeCard(data) {
     // console.log(data[0]);
-    for (let i = 0; i < 12; i++) {
+    for (let i = 0; i < data.length; i++) {
         const section = document.createElement('section');
         const fName = data[i].name.first;
         const lName = data[i].name.last;
@@ -41,6 +42,8 @@ function createEmployeeCard(data) {
         section.setAttribute('id', `${i}`);
         cardHolder.appendChild(section);
         employeeArray.push(data[i]);
+
+        filteredEmployeeArray.push(data[i]);
     }
 }
 
@@ -136,27 +139,21 @@ function abbreviateState(state) {
 
 //EVENT LISTENERS
 searchbox.addEventListener('keyup', e => {
-    console.log(e);
     const searchText = searchbox.value;
-    const cardList = cardHolder.children;
-    // const nameList = document.querySelectorAll('.card h3');
-    // for (let i = 0; i < cardList.length; i++) {
-    //     if (cardList[i].textContent.includes(searchText)) {
-    //         console.log(cardList[i]);
-    //         cardList[i].setAttribute('id', i);
-    //     }
-    // }
-    const newArray = employeeArray.filter(employee => {
-        const name = `${employee.name.first.toLowerCase()} ${employee.name.last.toLowerCase()}`;
-        return name.includes(searchText);
-    });
-    console.log(newArray);
+    filteredEmployeeArray = [];
     for (let i = 0; i < cardList.length; i++) {
-        cardList[i].style.display = 'none';
-
+        const name = cardList[i].children[1].textContent.toLowerCase();
+        if (name.includes(searchText)) {
+            cardList[i].style.display = '';
+            filteredEmployeeArray.push(employeeArray[i]);
+        }
+        else {
+            cardList[i].style.display = 'none';
+        }
     }
-
-    // createEmployeeCard(newArray);
+    console.log(filteredEmployeeArray);
+    // filteredEmployeeArray.forEach(employee => console.log(employee));
+    // console.log(filteredEmployeeArray);
 });
 
 modal.addEventListener('click', e => {
@@ -168,26 +165,103 @@ modal.addEventListener('click', e => {
         body.style.overflow = 'auto';
         searchWrapper.style.zIndex = '5';
     }
+
+
+
+
     if (e.target.id === 'left-arrow' || e.target.parentElement.id === 'left-arrow') {
-        if (currentIndex === (employeeArray.length - employeeArray.length)) {
-            createEmployeeModal(employeeArray[employeeArray.length - 1]);
+        if (currentIndex === 0) {
             currentIndex = employeeArray.length - 1;
         }
         else {
-            createEmployeeModal(employeeArray[currentIndex - 1]);
             currentIndex -= 1;
         }
+        while (cardList[currentIndex].style.display === 'none') {
+            currentIndex -= 1;
+            if (currentIndex === 0) {
+                currentIndex = employeeArray.length - 1;
+            }
+        }
+        createEmployeeModal(employeeArray[currentIndex]);
+
+
+
+
+
+
+        // if (currentIndex === (employeeArray.length - employeeArray.length)) {
+        //     createEmployeeModal(employeeArray[employeeArray.length - 1]);
+        //     currentIndex = employeeArray.length - 1;
+        // }
+        // else {
+        //     createEmployeeModal(employeeArray[currentIndex - 1]);
+        //     currentIndex -= 1;
+        // }
     }
+
     if (e.target.id === 'right-arrow' || e.target.parentElement.id === 'right-arrow') {
         if (currentIndex === employeeArray.length - 1) {
-            createEmployeeModal(employeeArray[employeeArray.length - employeeArray.length]);
-            currentIndex = employeeArray.length - employeeArray.length;
+            currentIndex = 0;
         }
         else {
-            createEmployeeModal(employeeArray[currentIndex + 1]);
             currentIndex += 1;
         }
+        while (cardList[currentIndex].style.display === 'none') {
+            currentIndex += 1;
+            if (currentIndex === employeeArray.length - 1) {
+                currentIndex = 0;
+            }
+        }
+        createEmployeeModal(employeeArray[currentIndex]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // console.log(cardList[currentIndex].style.display);
+
+        // if (cardList[currentIndex + 1].style.display === 'none') {
+        //     // while (cardList[currentIndex + 1].style.display === 'none') {
+        //     //     currentIndex += 1;
+        //     // }
+        //     createEmployeeModal(employeeArray[currentIndex + 1]);
+        // }
+
+        // if (currentIndex === employeeArray.length - 1) {
+        //     currentIndex = 0;
+        //     if(cardList[0].style.display === 'none'){
+
+        //     }
+        // }
+        // else {
+        //     createEmployeeModal(employeeArray[currentIndex + 1]);
+        //     currentIndex += 1;
+        // }
     }
+
+
+
+
+
+
+
+
+
+
+
 });
 
 main.addEventListener('click', e => {
@@ -200,13 +274,15 @@ main.addEventListener('click', e => {
         let id = '';
         if (e.target.parentElement.className === 'card') {
             id = parseInt(e.target.parentElement.id);
+            console.log(e);
         }
         else {
             id = parseInt(e.target.id);
         }
+        // console.log(e);
         currentIndex = id;
         createEmployeeModal(employeeArray[id]);
+        // createEmployeeModal(filteredEmployeeArray[id]);
     }
 });
-
 
