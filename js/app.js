@@ -24,7 +24,9 @@ fetch('https://randomuser.me/api/?nat=us&results=12')
     .catch(err => console.log(`There was an error loading data: ${err}`))
 
 
-//CREATOR FUNCTIONS
+//-----CREATOR FUNCTIONS
+
+//Creating the cards to display from fetch request
 function createEmployeeCard(data) {
     for (let i = 0; i < data.length; i++) {
         const section = document.createElement('section');
@@ -47,6 +49,7 @@ function createEmployeeCard(data) {
     }
 }
 
+//Creating the modal display with employee data
 function createEmployeeModal(data) {
     const fName = data.name.first;
     const lName = data.name.last;
@@ -70,6 +73,8 @@ function createEmployeeModal(data) {
         <p>Birthday: ${birthDate}</p>
     `;
     modalCard.innerHTML = html;
+
+    //if 1 employee available, don't display arrows
     if (filteredEmployeeArray.length === 1) {
         for (let arrow of arrows) {
             arrow.style.display = 'none';
@@ -83,7 +88,7 @@ function createEmployeeModal(data) {
 }
 
 
-//HELPER FUNCTIONS
+//-----HELPER FUNCTIONS
 function abbreviateState(state) {
     var states = [
         ['Arizona', 'AZ'],
@@ -137,6 +142,8 @@ function abbreviateState(state) {
         ['Wisconsin', 'WI'],
         ['Wyoming', 'WY'],
     ];
+
+    //changing the state name to its abbreviated version
     for (let i = 0; i < states.length; i++) {
         if (states[i][0] === state) {
             return states[i][1];
@@ -145,9 +152,11 @@ function abbreviateState(state) {
     return 'Unavailable';
 }
 
-//EVENT LISTENERS
+//-----EVENT LISTENERS
 searchbox.addEventListener('keyup', e => {
     const searchText = searchbox.value;
+
+    //clearing the previously used array and adding the new results based on user search
     filteredEmployeeArray = [];
     for (let i = 0; i < cardList.length; i++) {
         const name = cardList[i].children[1].textContent.toLowerCase();
@@ -159,6 +168,8 @@ searchbox.addEventListener('keyup', e => {
             cardList[i].style.display = 'none';
         }
     }
+
+    //displaying no-results div if there are no employees to display
     if (filteredEmployeeArray.length === 0) {
         noResults.style.display = 'block';
     }
@@ -168,6 +179,7 @@ searchbox.addEventListener('keyup', e => {
     console.log(filteredEmployeeArray);
 });
 
+//click event inside the modal
 modal.addEventListener('click', e => {
     if (e.target.id === 'exit') {
         modal.style.opacity = '0';
@@ -210,6 +222,7 @@ modal.addEventListener('click', e => {
     }
 });
 
+//click event when modal is not displayed
 main.addEventListener('click', e => {
     if (e.target.parentElement.className === 'card' || e.target.className === 'card') {
         modal.style.opacity = '1';
