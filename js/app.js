@@ -6,6 +6,7 @@ const cardHolder = document.getElementById('card-holder');
 const cardList = cardHolder.children;
 const modal = document.getElementById('modal');
 const modalCard = document.getElementById('modal-card');
+const arrows = document.getElementsByClassName('arrow');
 const btnExitModal = document.querySelector('#exit');
 const employeeArray = [];
 let filteredEmployeeArray = [];
@@ -71,6 +72,16 @@ function createEmployeeModal(data) {
         <p>Birthday: ${birthDate}</p>
     `;
     modalCard.innerHTML = html;
+    if (filteredEmployeeArray.length === 1) {
+        for (let arrow of arrows) {
+            arrow.style.display = 'none';
+        }
+    }
+    else {
+        for (let arrow of arrows) {
+            arrow.style.display = '';
+        }
+    }
 }
 
 
@@ -282,6 +293,7 @@ main.addEventListener('click', e => {
         }
         // console.log(e);
         currentIndex = id;
+
         createEmployeeModal(employeeArray[id]);
         // createEmployeeModal(filteredEmployeeArray[id]);
     }
