@@ -26,7 +26,6 @@ fetch('https://randomuser.me/api/?nat=us&results=12')
 
 //CREATOR FUNCTIONS
 function createEmployeeCard(data) {
-    // console.log(data[0]);
     for (let i = 0; i < data.length; i++) {
         const section = document.createElement('section');
         const fName = data[i].name.first;
@@ -44,13 +43,11 @@ function createEmployeeCard(data) {
         section.setAttribute('id', `${i}`);
         cardHolder.appendChild(section);
         employeeArray.push(data[i]);
-
         filteredEmployeeArray.push(data[i]);
     }
 }
 
 function createEmployeeModal(data) {
-    // console.log(data);
     const fName = data.name.first;
     const lName = data.name.last;
     const email = data.email;
@@ -140,7 +137,6 @@ function abbreviateState(state) {
         ['Wisconsin', 'WI'],
         ['Wyoming', 'WY'],
     ];
-
     for (let i = 0; i < states.length; i++) {
         if (states[i][0] === state) {
             return states[i][1];
@@ -163,7 +159,6 @@ searchbox.addEventListener('keyup', e => {
             cardList[i].style.display = 'none';
         }
     }
-
     if (filteredEmployeeArray.length === 0) {
         noResults.style.display = 'block';
     }
@@ -171,12 +166,9 @@ searchbox.addEventListener('keyup', e => {
         noResults.style.display = 'none';
     }
     console.log(filteredEmployeeArray);
-    // filteredEmployeeArray.forEach(employee => console.log(employee));
-    // console.log(filteredEmployeeArray);
 });
 
 modal.addEventListener('click', e => {
-    // console.log(e);
     if (e.target.id === 'exit') {
         modal.style.opacity = '0';
         modal.style.pointerEvents = 'none';
@@ -184,10 +176,6 @@ modal.addEventListener('click', e => {
         body.style.overflow = 'auto';
         searchWrapper.style.zIndex = '5';
     }
-
-
-
-
     if (e.target.id === 'left-arrow' || e.target.parentElement.id === 'left-arrow') {
         if (currentIndex === 0) {
             currentIndex = employeeArray.length - 1;
@@ -202,20 +190,6 @@ modal.addEventListener('click', e => {
             currentIndex -= 1;
         }
         createEmployeeModal(employeeArray[currentIndex]);
-
-
-
-
-
-
-        // if (currentIndex === (employeeArray.length - employeeArray.length)) {
-        //     createEmployeeModal(employeeArray[employeeArray.length - 1]);
-        //     currentIndex = employeeArray.length - 1;
-        // }
-        // else {
-        //     createEmployeeModal(employeeArray[currentIndex - 1]);
-        //     currentIndex -= 1;
-        // }
     }
 
     if (e.target.id === 'right-arrow' || e.target.parentElement.id === 'right-arrow') {
@@ -233,55 +207,7 @@ modal.addEventListener('click', e => {
 
         }
         createEmployeeModal(employeeArray[currentIndex]);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        // console.log(cardList[currentIndex].style.display);
-
-        // if (cardList[currentIndex + 1].style.display === 'none') {
-        //     // while (cardList[currentIndex + 1].style.display === 'none') {
-        //     //     currentIndex += 1;
-        //     // }
-        //     createEmployeeModal(employeeArray[currentIndex + 1]);
-        // }
-
-        // if (currentIndex === employeeArray.length - 1) {
-        //     currentIndex = 0;
-        //     if(cardList[0].style.display === 'none'){
-
-        //     }
-        // }
-        // else {
-        //     createEmployeeModal(employeeArray[currentIndex + 1]);
-        //     currentIndex += 1;
-        // }
     }
-
-
-
-
-
-
-
-
-
-
-
 });
 
 main.addEventListener('click', e => {
@@ -299,11 +225,8 @@ main.addEventListener('click', e => {
         else {
             id = parseInt(e.target.id);
         }
-        // console.log(e);
         currentIndex = id;
-
         createEmployeeModal(employeeArray[id]);
-        // createEmployeeModal(filteredEmployeeArray[id]);
     }
 });
 
