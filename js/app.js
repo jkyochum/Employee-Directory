@@ -3,6 +3,7 @@ const main = document.getElementById('main');
 const searchbox = document.getElementById('searchbox');
 const searchWrapper = document.getElementById('search-wrapper');
 const cardHolder = document.getElementById('card-holder');
+const noResults = document.getElementById('no-results');
 const cardList = cardHolder.children;
 const modal = document.getElementById('modal');
 const modalCard = document.getElementById('modal-card');
@@ -161,6 +162,13 @@ searchbox.addEventListener('keyup', e => {
         else {
             cardList[i].style.display = 'none';
         }
+    }
+
+    if (filteredEmployeeArray.length === 0) {
+        noResults.style.display = 'block';
+    }
+    else {
+        noResults.style.display = 'none';
     }
     console.log(filteredEmployeeArray);
     // filteredEmployeeArray.forEach(employee => console.log(employee));

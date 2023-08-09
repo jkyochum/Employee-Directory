@@ -59,6 +59,14 @@ main {
     margin-top: 5px;
 }
 
+#no-results {
+    display: none;
+    margin-top: 80px;
+    font-size: 3em;
+    text-align: center;
+    color: rgba(222, 217, 217, .8);
+}
+
 .card {
     width: 318px;
     height: 120px;
