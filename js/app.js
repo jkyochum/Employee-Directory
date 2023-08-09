@@ -177,10 +177,10 @@ modal.addEventListener('click', e => {
             currentIndex -= 1;
         }
         while (cardList[currentIndex].style.display === 'none') {
-            currentIndex -= 1;
             if (currentIndex === 0) {
-                currentIndex = employeeArray.length - 1;
+                currentIndex = employeeArray.length;
             }
+            currentIndex -= 1;
         }
         createEmployeeModal(employeeArray[currentIndex]);
 
@@ -207,10 +207,11 @@ modal.addEventListener('click', e => {
             currentIndex += 1;
         }
         while (cardList[currentIndex].style.display === 'none') {
-            currentIndex += 1;
             if (currentIndex === employeeArray.length - 1) {
-                currentIndex = 0;
+                currentIndex = -1;
             }
+            currentIndex += 1;
+
         }
         createEmployeeModal(employeeArray[currentIndex]);
 
