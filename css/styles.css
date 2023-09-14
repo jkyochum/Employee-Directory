@@ -246,6 +246,7 @@ main {
     #search-wrapper {
         position: relative;
         background-color: rgb(255, 251, 246);
+        padding-top: 0;
         width: 315px;
         text-align: right;
         box-shadow: none;
