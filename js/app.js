@@ -154,7 +154,7 @@ function abbreviateState(state) {
 
 //-----EVENT LISTENERS
 searchbox.addEventListener('keyup', e => {
-    const searchText = searchbox.value;
+    const searchText = searchbox.value.toLowerCase();
 
     //clearing the previously used array and adding the new results based on user search
     filteredEmployeeArray = [];
