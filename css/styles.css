@@ -17,6 +17,19 @@ main {
     padding-bottom: 130px;
 }
 
+#logo svg {
+    width: 45px;
+    height: 45px;
+}
+
+#logoRect {
+    fill: rgb(255 228 195);
+}
+
+#roundCornerRect {
+    fill-opacity: 0;
+}
+
 #header {
     display: flex;
     flex-direction: column;
@@ -25,7 +38,7 @@ main {
 #page_heading {
     font-size: 1em;
     text-align: center;
-    padding: 28px 0 18px;
+    padding: 2px 0 18px;
     width: 100%;
 }
 
